@@ -5,147 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dan Concursos | Painel</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
- <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCi3qRVREDfcR-MBS-RaTKrcJMz5g_N1kw",
-    authDomain: "dan-concursos.firebaseapp.com",
-    projectId: "dan-concursos",
-    storageBucket: "dan-concursos.firebasestorage.app",
-    messagingSenderId: "562408055516",
-    appId: "1:562408055516:web:ac6a11898690f35443ca19",
-    measurementId: "G-YWHQYZJN75"
-  };
+        const firebaseConfig = {
+            apiKey: "AIzaSyCi3qRVREDfcR-MBS-RaTKrcJMz5g_N1kw",
+            authDomain: "dan-concursos.firebaseapp.com",
+            projectId: "dan-concursos",
+            storageBucket: "dan-concursos.firebasestorage.app",
+            messagingSenderId: "562408055516",
+            appId: "1:562408055516:web:ac6a11898690f35443ca19"
+        };
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
 
-  // 1. Verificação Imediata (Plano B)
-  // Se não houver NADA no localStorage, nem tentamos esperar o Firebase.
-  if (localStorage.getItem('logado') !== 'true') {
-      window.location.href = "index.html";
-  }
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Usuário logado via Firebase
+                document.getElementById("userName").innerText = user.displayName;
+                document.getElementById("userPic").src = user.photoURL;
+                document.getElementById("userProfile").style.display = "flex";
+                
+                if (typeof buscarQuestoes === "function") buscarQuestoes();
+            } else {
+                // Se não houver sessão ativa, volta pro login
+                localStorage.clear();
+                window.location.href = "index.html";
+            }
+        });
 
-  // 2. Verificação Oficial do Firebase
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log("Acesso confirmado via Firebase:", user.email);
-      // Preenche o nome na tela
-      const nomeExibicao = user.displayName || user.email.split('@')[0];
-      document.getElementById("userName").innerText = nomeExibicao;
-      document.getElementById("userProfile").style.display = "flex";
-      
-      if (typeof buscarQuestoes === "function") buscarQuestoes();
-    } else {
-      // Se o Firebase diz que não tem user, mas o localStorage diz que sim, 
-      // damos um tempo. Se em 2 segundos o Firebase não validar, expulsamos.
-      setTimeout(() => {
-          if (!auth.currentUser && localStorage.getItem('logado') !== 'true') {
-              window.location.href = "index.html";
-          }
-      }, 2000);
-    }
-  });
+        window.deslogar = () => {
+            signOut(auth).then(() => {
+                localStorage.clear();
+                window.location.href = "index.html";
+            });
+        };
+    </script>
 
-  window.deslogar = () => {
-    localStorage.clear();
-    signOut(auth).then(() => {
-      window.location.href = "index.html";
-    });
-  };
-</script>
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #fff; border-bottom: 1px solid #ddd;">
+        <h1>Dan Concursos</h1>
 
-<header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #fff; border-bottom: 1px solid #ddd;">
-    <h1 style="margin: 0;">Dan Concursos</h1>
-
-    <div id="userProfile" style="display: none; align-items: center; gap: 12px; background: #f0f0f0; padding: 5px 15px; border-radius: 50px;">
-        <img id="userPic" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" width="35" style="border-radius: 50%; border: 1px solid #ccc;">
-        <span id="userName" style="font-weight: bold; color: #333;"></span>
-        
-        <button onclick="deslogar()" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
-            SAIR
-        </button>
-    </div>
-</header>
-        
-
-        <header>
-    <h1>Dan Concursos</h1>
-    <button onclick="deslogar()" style="background: #e74c3c; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
-        Sair do Sistema
-    </button>
-</header>
+        <div id="userProfile" style="display: none; align-items: center; gap: 12px; background: #f0f0f0; padding: 5px 15px; border-radius: 50px;">
+            <img id="userPic" src="" width="35" style="border-radius: 50%;">
+            <span id="userName" style="font-weight: bold;"></span>
+            <button onclick="deslogar()" style="background: #e74c3c; color: white; border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer;">
+                SAIR
+            </button>
+        </div>
     </header>
 
     <main class="container">
-        <aside class="filters">
-            <h3>Filtros</h3>
-            <label>Disciplina:</label>
-            <select id="disciplina">
-                <option value="todos">Todas</option>
-                <option value="portugues">Português</option>
-                <option value="informatica">Informática</option>
-                <option value="direito">Direito Constitucional</option>
-            </select>
-
-            <label>Banca:</label>
-            <input type="text" id="banca" placeholder="Ex: FGV, CESPE...">
-
-            <button onclick="buscarQuestoes()">Filtrar Questões</button>
-        </aside>
-
-        <div id="placar-container">
-            <div>✅ <span id="contador-acertos">0</span></div>
-            <div>❌ <span id="contador-erros">0</span></div>
-            <div>📊 <span id="porcentagem-acerto">0%</span></div>
-            <button onclick="reiniciarSimulado()" class="btn-reset">🔄</button>
-
-            <div id="cronometro-container" style="border-left: 1px solid rgba(255,255,255,0.2); padding-left: 15px;">
-    ⏱️ <span id="tempo-prova" style="font-family: monospace; font-size: 1.3rem;">00:00:00</span>
-</div>
-
-
-        </div>
-</div>
-
-        <section class="feed-questoes" id="feedQuestoes">
-            <p>Selecione os filtros para começar a estudar.</p>
+        <section id="feedQuestoes">
+            <p>Carregando questões...</p>
         </section>
     </main>
 
-    <script src="js/auth.js"></script>
     <script src="js/api.js"></script>
-
-    <script>
-        // Lógica de inicialização para garantir que o botão apareça
-        window.onload = function() {
-            const nome = localStorage.getItem('usuarioNome');
-            const foto = localStorage.getItem('usuarioPic');
-            const logado = localStorage.getItem('logado');
-
-            if (logado === 'true' && nome) {
-                document.getElementById("userName").innerText = nome;
-                document.getElementById("userPic").src = foto;
-                document.getElementById("userProfile").style.display = "flex";
-                
-                // Se a função de buscar questões existir, ela roda
-                if (typeof buscarQuestoes === "function") {
-                    buscarQuestoes();
-                }
-            } else {
-                window.location.href = "index.html";
-            }
-        };
-
-        function logout() {
-            localStorage.clear();
-            window.location.href = "index.html";
-        }
-    </script>
 </body>
 </html>
