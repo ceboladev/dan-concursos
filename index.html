@@ -15,9 +15,7 @@
         </header>
 
         <section class="login-box">
-            <h2>Bem-vindo!</h2>
-            <p>Use sua conta Google para acessar o simulado.</p>
-            
+            <h2>Bem-vindo de volta!</h2>
             <div id="buttonDiv" style="display: flex; justify-content: center; margin-top: 20px;"></div>
         </section>
 
@@ -26,47 +24,34 @@
         </footer>
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, GoogleAuthProvider, signInWithCredential } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    <script>
+        function parseJwt(token) {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            return JSON.parse(window.atob(base64));
+        }
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyCi3qRVREDfcR-MBS-RaTKrcJMz5g_N1kw",
-            authDomain: "dan-concursos.firebaseapp.com",
-            projectId: "dan-concursos",
-            storageBucket: "dan-concursos.firebasestorage.app",
-            messagingSenderId: "562408055516",
-            appId: "1:562408055516:web:ac6a11898690f35443ca19"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-
-        // Função global para o Google chamar
-        window.handleCredentialResponse = (response) => {
-            const credential = GoogleAuthProvider.credential(response.credential);
+        function handleCredentialResponse(response) {
+            const data = parseJwt(response.credential);
             
-            signInWithCredential(auth, credential)
-                .then((result) => {
-                    // Salva no LocalStorage para garantir que o Dashboard leia rápido
-                    localStorage.setItem('logado', 'true');
-                    localStorage.setItem('usuarioNome', result.user.displayName);
-                    localStorage.setItem('usuarioPic', result.user.photoURL);
-                    
-                    window.location.href = "dashboard.html";
-                })
-                .catch((error) => alert("Erro no Firebase: " + error.message));
-        };
+            // Salvando exatamente como sua Dashboard espera
+            localStorage.setItem('usuarioNome', data.given_name);
+            localStorage.setItem('usuarioEmail', data.email);
+            localStorage.setItem('usuarioPic', data.picture);
+            localStorage.setItem('logado', 'true');
 
-        // Inicializa o botão do Google
+            window.location.href = "dashboard.html";
+        }
+
         window.onload = function () {
             google.accounts.id.initialize({
                 client_id: "785159397160-0ceuv2echsf9n8ml96i5g22fndtifvsk.apps.googleusercontent.com",
-                callback: window.handleCredentialResponse
+                callback: handleCredentialResponse
             });
+
             google.accounts.id.renderButton(
                 document.getElementById("buttonDiv"),
-                { theme: "filled_blue", size: "large", shape: "pill", width: "250" }
+                { theme: "filled_blue", size: "large", shape: "pill", width: "250" } 
             );
         };
     </script>
