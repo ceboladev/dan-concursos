@@ -19,10 +19,28 @@
         </div>
     </header>
 
-    <main class="container">
-        <section id="feedQuestoes">
-            <p>Carregando simulado...</p>
-        </section>
+    <main> 
+        <aside class="filters">
+    <h3>Filtros</h3>
+    <label>Disciplina:</label>
+    <select id="disciplina">
+        <option value="todos">Todas</option>
+        <option value="portugues">Português</option>
+        <option value="informatica">Informática</option>
+    </select>
+
+    <label>Banca:</label>
+    <input type="text" id="banca" placeholder="Ex: FGV, IBADE...">
+
+    <button onclick="buscarQuestoes()">Filtrar Questões</button>
+</aside>
+
+<div id="placar-container">
+    Acertos: <span id="contador-acertos">0</span>
+    Erros: <span id="contador-erros">0</span>
+    Aproveitamento: <span id="porcentagem-acerto">0%</span>
+    Tempo: <span id="tempo-prova">00:00:00</span>
+</div>
     </main>
 
     <script src="js/api.js"></script>
