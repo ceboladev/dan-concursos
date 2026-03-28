@@ -8,6 +8,42 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
+    <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+  // USE A MESMA CONFIGURAÇÃO DO SEU INDEX.HTML
+  const firebaseConfig = {
+    apiKey: "SUA_API_KEY",
+    authDomain: "seu-projeto.firebaseapp.com",
+    projectId: "seu-projeto",
+    storageBucket: "seu-projeto.appspot.com",
+    appId: "1:12345:web:abcde"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // VERIFICAÇÃO DE LOGIN EM TEMPO REAL
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // Usuário está logado!
+      console.log("Bem-vindo, Peterson:", user.email);
+    } else {
+      // Usuário NÃO está logado. "Chuta" ele para o index.
+      window.location.href = "index.html";
+    }
+  });
+
+  // FUNÇÃO DE LOGOUT (OPCIONAL - PARA O BOTÃO SAIR)
+  window.deslogar = () => {
+    signOut(auth).then(() => {
+      window.location.href = "index.html";
+    });
+  };
+</script>
+
+
     <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #fff; border-bottom: 1px solid #ddd;">
         <h1 style="margin: 0;">Dan Concursos</h1>
 
@@ -28,6 +64,13 @@
                 SAIR
             </button>
         </div>
+
+        <header>
+    <h1>Dan Concursos</h1>
+    <button onclick="deslogar()" style="background: #e74c3c; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">
+        Sair do Sistema
+    </button>
+</header>
     </header>
 
     <main class="container">
