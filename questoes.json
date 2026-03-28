@@ -220,5 +220,77 @@
         "  qualquer fonte "
     ],
     "correta": 3
-}
+},
+[
+  {
+    "id": 24,
+    "disciplina": "direito",
+    "banca": "IBADE",
+    "ano": "2024",
+    "enunciado": "De acordo com a Constituição Federal, a segurança pública, dever do Estado, direito e responsabilidade de todos, é exercida para a preservação da ordem pública e da incolumidade das pessoas e do patrimônio. Sobre as Guardas Municipais, é correto afirmar que:",
+    "alternativas": [
+        "São órgãos de segurança pública com poder de polícia judiciária.",
+        "Destinam-se à proteção de bens, serviços e instalações do Município.",
+        "Subordinam-se diretamente ao Governo do Estado.",
+        "Possuem as mesmas atribuições da Polícia Militar."
+    ],
+    "correta": 1
+  },
+  {
+    "id": 25,
+    "disciplina": "portugues",
+    "banca": "IAN",
+    "ano": "2023",
+    "enunciado": "Assinale a alternativa em que a concordância verbal está INCORRETA:",
+    "alternativas": [
+        "Faz dez anos que trabalho na Guarda Municipal.",
+        "Haverão novos concursos para GCM este ano.",
+        "Mais de um guarda se cumprimentaram na entrada.",
+        "A maioria dos candidatos foi aprovada."
+    ],
+    "correta": 1
+  },
+  {
+    "id": 26,
+    "disciplina": "informatica",
+    "banca": "AOCP",
+    "ano": "2024",
+    "enunciado": "No sistema operacional Linux (como o seu Linux Mint), qual comando é utilizado para alterar as permissões de acesso de um arquivo ou diretório?",
+    "alternativas": [
+        "chown",
+        "chmod",
+        "pwd",
+        "grep"
+    ],
+    "correta": 1
+  },
+  {
+    "id": 27,
+    "disciplina": "direito",
+    "banca": "IBADE",
+    "ano": "2024",
+    "enunciado": "Segundo a Lei 13.022/2014, é princípio mínimo de atuação das guardas municipais:",
+    "alternativas": [
+        "Uso progressivo da força.",
+        "Patrulhamento ostensivo preventivo e repressivo.",
+        "Preservação da vida, redução do sofrimento e diminuição de perdas.",
+        "Uso de armamento letal como primeira opção de abordagem."
+    ],
+    "correta": 2
+  },
+  {
+    "id": 28,
+    "disciplina": "informatica",
+    "banca": "IBGP",
+    "ano": "2023",
+    "enunciado": "Qual tecla de atalho é comumente utilizada nos navegadores para abrir uma nova guia anônima?",
+    "alternativas": [
+        "Ctrl + T",
+        "Ctrl + N",
+        "Ctrl + Shift + N",
+        "Ctrl + J"
+    ],
+    "correta": 2
+  }
+]
 ]
