@@ -8,62 +8,61 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-    <script type="module">
+   <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-  // USE A MESMA CONFIGURAÇÃO DO SEU INDEX.HTML
+  // IMPORTANTE: Use EXATAMENTE a mesma config que você usou no index.html
   const firebaseConfig = {
-    apiKey: "SUA_API_KEY",
-    authDomain: "seu-projeto.firebaseapp.com",
-    projectId: "seu-projeto",
-    storageBucket: "seu-projeto.appspot.com",
-    appId: "1:12345:web:abcde"
+    apiKey: "AIzaSyCi3qRVREDfcR-MBS-RaTKrcJMz5g_N1kw",
+    authDomain: "dan-concursos.firebaseapp.com",
+    projectId: "dan-concursos",
+    storageBucket: "dan-concursos.firebasestorage.app",
+    messagingSenderId: "562408055516",
+    appId: "1:562408055516:web:ac6a11898690f35443ca19",
+    measurementId: "G-YWHQYZJN75"
   };
 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  // VERIFICAÇÃO DE LOGIN EM TEMPO REAL
   onAuthStateChanged(auth, (user) => {
-    if (user) {
-      // Usuário está logado!
-      console.log("Bem-vindo, Peterson:", user.email);
-    } else {
-      // Usuário NÃO está logado. "Chuta" ele para o index.
+    // Se não tem user no Firebase E não tem a marca de 'logado' no localStorage
+    if (!user && localStorage.getItem('logado') !== 'true') {
       window.location.href = "index.html";
+    } else {
+      // Se estiver logado, preenchemos os dados na tela
+      const nome = user ? user.email.split('@')[0] : localStorage.getItem('usuarioNome');
+      document.getElementById("userName").innerText = nome;
+      document.getElementById("userProfile").style.display = "flex";
+      
+      // Carrega as questões automaticamente
+      if (typeof buscarQuestoes === "function") buscarQuestoes();
     }
   });
 
-  // FUNÇÃO DE LOGOUT (OPCIONAL - PARA O BOTÃO SAIR)
+  // Função Global para o botão Sair
   window.deslogar = () => {
+    localStorage.clear(); // Limpa o cache do Google tbm
     signOut(auth).then(() => {
       window.location.href = "index.html";
     });
   };
 </script>
 
+<header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #fff; border-bottom: 1px solid #ddd;">
+    <h1 style="margin: 0;">Dan Concursos</h1>
 
-    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #fff; border-bottom: 1px solid #ddd;">
-        <h1 style="margin: 0;">Dan Concursos</h1>
-
-        <div id="userProfile" style="display: none; align-items: center; gap: 12px; background: #f0f0f0; padding: 5px 15px; border-radius: 50px;">
-            <img id="userPic" src="" width="35" style="border-radius: 50%; border: 1px solid #ccc;">
-            <span id="userName" style="font-weight: bold; color: #333;"></span>
-            
-            <button onclick="logout()" style="
-                display: inline-block !important; 
-                background-color: #ff0000 !important; 
-                color: #ffffff !important; 
-                padding: 8px 15px !important; 
-                border: none !important; 
-                border-radius: 5px !important; 
-                cursor: pointer !important;
-                font-weight: bold !important;
-            ">
-                SAIR
-            </button>
-        </div>
+    <div id="userProfile" style="display: none; align-items: center; gap: 12px; background: #f0f0f0; padding: 5px 15px; border-radius: 50px;">
+        <img id="userPic" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" width="35" style="border-radius: 50%; border: 1px solid #ccc;">
+        <span id="userName" style="font-weight: bold; color: #333;"></span>
+        
+        <button onclick="deslogar()" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+            SAIR
+        </button>
+    </div>
+</header>
+        
 
         <header>
     <h1>Dan Concursos</h1>

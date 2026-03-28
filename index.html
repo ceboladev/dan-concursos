@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dan Concursos - Login</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="[https://accounts.google.com/gsi/client](https://accounts.google.com/gsi/client)" async defer></script>
 </head>
 <body class="login-page">
     <div class="login-container">
@@ -18,112 +18,94 @@
             <h2>Bem-vindo de volta!</h2>
             <p>Acesse sua conta para continuar seus estudos.</p>
             
-            <div id="buttonDiv" style="margin-bottom: 20px;"></div>
+            <div id="buttonDiv" style="display: flex; justify-content: center; margin-bottom: 20px;"></div>
 
             <hr style="opacity: 0.2; margin: 20px 0;">
 
             <div class="form-cadastro">
-                <input type="email" id="email" placeholder="Email" style="width: 100%; margin-bottom: 10px; padding: 10px;">
-                <input type="password" id="senha" placeholder="Senha" style="width: 100%; margin-bottom: 10px; padding: 10px;">
+                <input type="email" id="email" placeholder="Email" style="width: 100%; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+                <input type="password" id="senha" placeholder="Senha" style="width: 100%; margin-bottom: 10px; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
                 
-                <button id="btnEntrar" style="width: 100%; padding: 10px; cursor: pointer;">
+                <button id="btnEntrar" style="width: 100%; padding: 12px; cursor: pointer; background-color: #2c3e50; color: white; border: none; border-radius: 5px; font-weight: bold;">
                     Entrar com E-mail
                 </button>
                 
-                <button id="btnCadastrar" style="background: #555; color: white; width: 100%; margin-top: 10px; padding: 10px; border: none; cursor: pointer;">
+                <button id="btnCadastrar" style="background: #7f8c8d; color: white; width: 100%; margin-top: 10px; padding: 10px; border: none; border-radius: 5px; cursor: pointer;">
                     Criar Nova Conta
                 </button>
             </div>
         </section>
 
-        <footer>
+        <footer style="margin-top: 20px; text-align: center;">
             <p>&copy; 2026 Dan Concursos - Desenvolvido por Peterson</p>
         </footer>
-    </div> ```
-
-
+    </div>
 
     <script>
-        // Função para decodificar o Token JWT do Google
         function parseJwt(token) {
             const base64Url = token.split('.')[1];
             const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
             return JSON.parse(window.atob(base64));
         }
 
-        // Função que o Google chama após o login bem-sucedido
         function handleCredentialResponse(response) {
             const data = parseJwt(response.credential);
-            
-            // Salva os dados no navegador para usar na Dashboard
             localStorage.setItem('usuarioNome', data.given_name);
             localStorage.setItem('usuarioEmail', data.email);
-            localStorage.setItem('usuarioPic', data.picture);
             localStorage.setItem('logado', 'true');
-
-            // Redireciona para a página de questões
             window.location.href = "dashboard.html";
         }
 
         window.onload = function () {
             google.accounts.id.initialize({
-                client_id: "785159397160-0ceuv2echsf9n8ml96i5g22fndtifvsk.apps.googleusercontent.com", // Substitua pelo seu ID do Google Cloud
+                client_id: "785159397160-0ceuv2echsf9n8ml96i5g22fndtifvsk.apps.googleusercontent.com",
                 callback: handleCredentialResponse
             });
-
             google.accounts.id.renderButton(
                 document.getElementById("buttonDiv"),
-                { 
-                    theme: "filled_blue", 
-                    size: "large", 
-                    text: "signin_with",
-                    shape: "pill",
-                    width: "250"
-                } 
+                { theme: "filled_blue", size: "large", shape: "pill", width: "250" } 
             );
         };
     </script>
-   <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCi3qRVREDfcR-MBS-RaTKrcJMz5g_N1kw",
-    authDomain: "dan-concursos.firebaseapp.com",
-    projectId: "dan-concursos",
-    storageBucket: "dan-concursos.firebasestorage.app",
-    messagingSenderId: "562408055516",
-    appId: "1:562408055516:web:ac6a11898690f35443ca19",
-    measurementId: "G-YWHQYZJN75"
-  };
+    <script type="module">
+        import { initializeApp } from "[https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js](https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js)";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "[https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js](https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js)";
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+        const firebaseConfig = {
+            apiKey: "AIzaSyCi3qRVREDfcR-MBS-RaTKrcJMz5g_N1kw",
+            authDomain: "dan-concursos.firebaseapp.com",
+            projectId: "dan-concursos",
+            storageBucket: "dan-concursos.firebasestorage.app",
+            messagingSenderId: "562408055516",
+            appId: "1:562408055516:web:ac6a11898690f35443ca19",
+            measurementId: "G-YWHQYZJN75"
+        };
 
-  // Selecionando os elementos
-  const btnEntrar = document.getElementById('btnEntrar');
-  const btnCadastrar = document.getElementById('btnCadastrar');
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
 
-  // Evento de Login
-  btnEntrar.addEventListener('click', () => {
-    const email = document.getElementById('email').value;
-    const senha = document.getElementById('senha').value;
-    
-    signInWithEmailAndPassword(auth, email, senha)
-      .then(() => {
-        localStorage.setItem('logado', 'true'); // Mantém compatibilidade com seu script antigo
-        window.location.href = "dashboard.html";
-      })
-      .catch((error) => alert("Erro ao entrar: " + error.message));
-  });
+        document.getElementById('btnEntrar').addEventListener('click', () => {
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+            
+            signInWithEmailAndPassword(auth, email, senha)
+                .then((userCredential) => {
+                    localStorage.setItem('logado', 'true');
+                    localStorage.setItem('usuarioEmail', userCredential.user.email);
+                    window.location.href = "dashboard.html";
+                })
+                .catch((error) => alert("Erro ao entrar: " + error.message));
+        });
 
-  // Evento de Cadastro
-  btnCadastrar.addEventListener('click', () => {
-    const email = document.getElementById('email').value;
-    const senha = document.getElementById('senha').value;
-    
-    createUserWithEmailAndPassword(auth, email, senha)
-      .then(() => alert("Conta criada! Agora você já pode entrar."))
-      .catch((error) => alert("Erro ao cadastrar: " + error.message));
-  });
-</script>
+        document.getElementById('btnCadastrar').addEventListener('click', () => {
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+            
+            createUserWithEmailAndPassword(auth, email, senha)
+                .then(() => alert("Conta criada! Agora você já pode entrar."))
+                .catch((error) => alert("Erro ao cadastrar: " + error.message));
+        });
+    </script>
+</body>
+</html>
