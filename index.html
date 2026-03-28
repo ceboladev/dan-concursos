@@ -3,103 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dan Concursos | Login</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Dan Concursos | Entrar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <style>
         :root {
-            --primary: #2c3e50;
-            --accent: #3498db;
-            --text: #1e293b;
-            --bg: #f8fafc;
+            --tec-blue: #004a8d; /* Azul clássico de sistemas de concurso */
+            --tec-gray: #f4f7f9;
+            --tec-border: #dce2e6;
+            --tec-text: #333;
         }
 
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            /* Gradiente sutil para profundidade */
-            background: radial-gradient(circle at top right, #e2e8f0 0%, #f8fafc 100%);
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--tec-gray);
             height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
 
-        .login-card {
+        .login-container {
             background: #ffffff;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
+            padding: 40px 30px;
+            border-radius: 4px; /* Bordas menos arredondadas = mais sério */
+            border: 1px solid var(--tec-border);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             text-align: center;
-            border: 1px solid rgba(226, 232, 240, 0.8);
         }
 
-        .logo-area h1 {
-            color: var(--primary);
-            font-size: 1.8rem;
-            margin: 0;
+        .brand {
+            margin-bottom: 30px;
+        }
+
+        .brand h1 {
+            color: var(--tec-blue);
+            font-size: 24px;
             font-weight: 700;
-            letter-spacing: -0.5px;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .logo-area p {
-            color: #64748b;
-            font-size: 0.95rem;
-            margin: 8px 0 32px 0;
+        .brand p {
+            color: #777;
+            font-size: 14px;
+            margin-top: 5px;
         }
 
-        .instruction {
-            margin-bottom: 24px;
-            color: var(--text);
-            font-size: 0.9rem;
-            font-weight: 600;
+        .login-header {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--tec-text);
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--tec-blue);
+            display: inline-block;
+            padding-bottom: 5px;
         }
 
-        #buttonDiv {
+        .google-btn-wrapper {
             display: flex;
             justify-content: center;
-            min-height: 44px; /* Evita que o layout pule ao carregar */
+            margin: 20px 0;
+            padding: 10px;
+            background: #fafafa;
+            border: 1px dashed #ccc;
+            border-radius: 4px;
         }
 
-        footer {
-            margin-top: 32px;
-            padding-top: 24px;
-            border-top: 1px solid #f1f5f9;
-            font-size: 0.75rem;
-            color: #94a3b8;
+        .info-footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #999;
+            line-height: 1.6;
         }
 
-        /* Animação suave de entrada */
-        .login-card {
-            animation: fadeIn 0.6s ease-out;
+        .footer-links {
+            margin-top: 20px;
+            font-size: 13px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .footer-links a {
+            color: var(--tec-blue);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilo da barra de progresso fake no topo (estilo TEC) */
+        .top-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--tec-blue);
         }
     </style>
 </head>
 <body>
 
-    <div class="login-card">
-        <div class="logo-area">
+    <div class="top-bar"></div>
+
+    <div class="login-container">
+        <div class="brand">
             <h1>Dan Concursos</h1>
-            <p>Plataforma de Simulados GCM</p>
+            <p>SISTEMA DE QUESTÕES PARA GCM</p>
         </div>
 
-        <div class="instruction">Acesse sua conta para continuar</div>
+        <div class="login-header">Identificação</div>
         
-        <div id="buttonDiv"></div>
+        <p style="font-size: 14px; color: #555;">Para acessar o painel de estudos, utilize sua conta Google:</p>
 
-        <footer>
-            Desenvolvido por Peterson &copy; 2026<br>
-            Foco na Aprovação
-        </footer>
+        <div class="google-btn-wrapper">
+            <div id="buttonDiv"></div>
+        </div>
+
+        <div class="info-footer">
+            Ao acessar, você concorda com os termos de uso da plataforma.<br>
+            Desenvolvido para alta performance em concursos municipais.
+        </div>
+    </div>
+
+    <div class="footer-links">
+        <a href="#">Ajuda</a> • 
+        <a href="#">Privacidade</a> • 
+        <a href="#">Sobre o Peterson</a>
     </div>
 
     <script>
@@ -126,11 +163,11 @@
             google.accounts.id.renderButton(
                 document.getElementById("buttonDiv"),
                 { 
-                    theme: "outline", // Mais profissional que o "filled"
+                    theme: "filled_blue", 
                     size: "large", 
-                    shape: "rectangular", // Combina com o card
-                    width: "280",
-                    text: "signin_with"
+                    shape: "rectangular", 
+                    width: "300",
+                    text: "continue_with"
                 } 
             );
         };
