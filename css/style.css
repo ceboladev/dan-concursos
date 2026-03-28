@@ -189,3 +189,80 @@ header h1 { font-size: 1.2rem; margin: 0; letter-spacing: 1px; }
 .card-questao {
     animation: fadeInUp 0.5s ease-out forwards;
 }
+
+/* CONTAINER DO PLACAR */
+#placar-container {
+    display: flex;
+    justify-content: space-between; /* Separa números do gráfico */
+    align-items: center;
+    background: var(--primary-color);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* LADO DOS NÚMEROS */
+.status-numeros {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas de números */
+    gap: 10px;
+    flex: 2;
+}
+
+.item-placar {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+#contador-acertos { color: #2ecc71; }
+#contador-erros { color: #ff7675; }
+
+/* LADO DO GRÁFICO */
+.status-grafico {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid rgba(255,255,255,0.1);
+    padding-left: 15px;
+}
+
+#pizza-grafico {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: conic-gradient(#27ae60 0% 0%, #e74c3c 0% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.5s ease;
+}
+
+.furo-donut {
+    width: 35px;
+    height: 35px;
+    background: var(--primary-color); /* Mesma cor do fundo do placar */
+    border-radius: 50%;
+}
+
+.status-grafico small {
+    font-size: 0.7rem;
+    margin-top: 5px;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+/* RESPONSIVIDADE PARA CELULAR */
+@media (max-width: 600px) {
+    #placar-container {
+        flex-direction: row; /* Mantém lado a lado, mas diminui fontes */
+        padding: 15px;
+    }
+    .status-numeros { gap: 5px; }
+    .item-placar { font-size: 0.8rem; }
+    #pizza-grafico { width: 60px; height: 60px; }
+    .furo-donut { width: 30px; height: 30px; }
+}
