@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dan Concursos | Gerador de Questões</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .form-cadastro { max-width: 600px; margin: 20px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        textarea { width: 100%; height: 80px; margin-bottom: 10px; }
+        .campo-alternativa { display: flex; gap: 10px; margin-bottom: 5px; }
+        pre { background: #333; color: #fff; padding: 15px; border-radius: 5px; overflow-x: auto; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <header style="padding: 10px 20px; background: #2c3e50; color: white;">
+        <h1>Painel do Administrador - Dan Concursos</h1>
+        <a href="dashboard.html" style="color: #3498db; text-decoration: none;">← Voltar ao Painel</a>
+    </header>
+
+    <div class="form-cadastro">
+        <h3>Nova Questão</h3>
+        
+        <label>ID (Siga a sequência):</label>
+        <input type="number" id="id" placeholder="Ex: 21">
+
+        <label>Disciplina:</label>
+        <select id="disciplina">
+            <option value="informatica">Informática</option>
+            <option value="portugues">Português</option>
+            <option value="direito">Direito</option>
+            <option value="direito-adm">Direito Administrativo</option>
+            <option value="raciocinio-logico">Raciocínio Lógico</option>
+        </select>
+
+        <label>Banca e Ano:</label>
+        <div style="display: flex; gap: 5px;">
+            <input type="text" id="banca" placeholder="Ex: FGV" style="flex: 2;">
+            <input type="number" id="ano" placeholder="2026" style="flex: 1;">
+        </div>
+
+        <label>Enunciado:</label>
+        <textarea id="enunciado"></textarea>
+
+        <label>Alternativas:</label>
+        <div class="campo-alternativa"><span>A</span><input type="text" class="alt" style="flex:1"></div>
+        <div class="campo-alternativa"><span>B</span><input type="text" class="alt" style="flex:1"></div>
+        <div class="campo-alternativa"><span>C</span><input type="text" class="alt" style="flex:1"></div>
+        <div class="campo-alternativa"><span>D</span><input type="text" class="alt" style="flex:1"></div>
+
+        <label>Índice da Correta (0=A, 1=B, 2=C, 3=D):</label>
+        <input type="number" id="correta" min="0" max="3">
+
+        <button onclick="gerarJSON()" style="background: #27ae60; color: white; width: 100%; padding: 10px; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px;">
+            GERAR CÓDIGO JSON
+        </button>
+
+        <div id="resultado">
+            <h4>Resultado (Copie e cole no seu questoes.json):</h4>
+            <pre id="jsonOutput">O código aparecerá aqui...</pre>
+        </div>
+    </div>
+
+    <script>
+        function gerarJSON() {
+            const alternativas = Array.from(document.querySelectorAll('.alt')).map(input => input.value);
+            
+            const novaQuestao = {
+                id: parseInt(document.getElementById('id').value),
+                disciplina: document.getElementById('disciplina').value,
+                banca: document.getElementById('banca').value,
+                ano: parseInt(document.getElementById('ano').value),
+                enunciado: document.getElementById('enunciado').value,
+                alternativas: alternativas,
+                correta: parseInt(document.getElementById('correta').value)
+            };
+
+            // Exibe formatado com 4 espaços de indentação
+            const jsonString = JSON.stringify(novaQuestao, null, 4);
+            document.getElementById('jsonOutput').innerText = jsonString + ",";
+        }
+    </script>
+</body>
+</html>

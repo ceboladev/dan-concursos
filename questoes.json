@@ -1,0 +1,224 @@
+[
+    {
+        "id": 1,
+        "disciplina": "informatica",
+        "banca": "FGV",
+        "ano": 2024,
+        "enunciado": "No Windows 10, qual o atalho para abrir o Gerenciador de Tarefas?",
+        "alternativas": ["Ctrl+Shift+Esc", "Alt+F4", "Win+L", "Ctrl+P"],
+        "correta": 0
+    },
+    {
+        "id": 2,
+        "disciplina": "portugues",
+        "banca": "CESPE",
+        "ano": 2023,
+        "enunciado": "Assinale a opção em que a concordância verbal está correta:",
+        "alternativas": ["Fazem dez anos", "Faz dez anos", "Houveram problemas", "Tratam-se de casos"],
+        "correta": 1
+    },
+    {
+        "id": 3,
+        "disciplina": "informatica",
+        "banca": "VUNESP",
+        "ano": 2024,
+        "enunciado": "No Linux, qual comando é utilizado para listar os arquivos de um diretório apresentando permissões e dono?",
+        "alternativas": ["cd -l", "mkdir", "ls -l", "pwd"],
+        "correta": 2
+    },
+    {
+        "id": 4,
+        "disciplina": "direito",
+        "banca": "FGV",
+        "ano": 2023,
+        "enunciado": "Segundo a Constituição Federal, a casa é asilo inviolável do indivíduo. Em qual situação é permitido entrar sem consentimento à noite?",
+        "alternativas": ["Ordem judicial", "Flagrante delito", "Investigação policial", "Visita administrativa"],
+        "correta": 1
+    },
+    {
+        "id": 5,
+        "disciplina": "informatica",
+        "banca": "CESPE",
+        "ano": 2024,
+        "enunciado": "Em bancos de dados relacionais, o comando SQL utilizado para excluir registros de uma tabela é:",
+        "alternativas": ["REMOVE", "DROP", "DELETE", "CLEAR"],
+        "correta": 2
+    },
+    {
+        "id": 6,
+        "disciplina": "portugues",
+        "banca": "VUNESP",
+        "ano": 2023,
+        "enunciado": "Assinale a alternativa onde a crase é obrigatória:",
+        "alternativas": ["Fui a feira", "Disse a ele", "Chegamos a noite", "Fizemos a pé"],
+        "correta": 2
+    },
+    {
+        "id": 7,
+        "disciplina": "informatica",
+        "banca": "FGV",
+        "ano": 2024,
+        "enunciado": "O que significa a sigla SSD em armazenamento de dados?",
+        "alternativas": ["Super Speed Disk", "Solid State Drive", "System Storage Data", "Secure Side Drive"],
+        "correta": 1
+    },
+    {
+        "id": 8,
+        "disciplina": "direito",
+        "banca": "CESPE",
+        "ano": 2023,
+        "enunciado": "São direitos sociais previstos na Constituição Federal, EXCETO:",
+        "alternativas": ["Saúde", "Educação", "Propriedade privada", "Trabalho"],
+        "correta": 2
+    },
+    {
+        "id": 9,
+        "disciplina": "informatica",
+        "banca": "VUNESP",
+        "ano": 2024,
+        "enunciado": "No Excel, qual função soma um intervalo de células baseado em uma condição específica?",
+        "alternativas": ["SOMA", "SOMASE", "CONT.SE", "PROCV"],
+        "correta": 1
+    },
+    {
+        "id": 10,
+        "disciplina": "portugues",
+        "banca": "FGV",
+        "ano": 2023,
+        "enunciado": "Qual das palavras abaixo está escrita corretamente seguindo o novo acordo ortográfico?",
+        "alternativas": ["Idéia", "Auto-estima", "Micro-ondas", "Vôo"],
+        "correta": 2
+    },
+    {
+        "id": 11,
+        "disciplina": "informatica",
+        "banca": "CESPE",
+        "ano": 2024,
+        "enunciado": "Qual protocolo é responsável pelo envio de e-mails na internet?",
+        "alternativas": ["HTTP", "FTP", "SMTP", "POP3"],
+        "correta": 2
+    },
+    {
+        "id": 12,
+        "disciplina": "direito",
+        "banca": "VUNESP",
+        "ano": 2023,
+        "enunciado": "Quem é o chefe do Poder Executivo em âmbito municipal?",
+        "alternativas": ["Governador", "Vereador", "Prefeito", "Deputado"],
+        "correta": 2
+    },
+    {
+        "id": 13,
+        "disciplina": "informatica",
+        "banca": "FGV",
+        "ano": 2024,
+        "enunciado": "Qual o principal objetivo de um Firewall em uma rede de computadores?",
+        "alternativas": ["Aumentar a internet", "Filtrar tráfego", "Deletar vírus", "Instalar programas"],
+        "correta": 1
+    },
+    {
+        "id": 14,
+        "disciplina": "portugues",
+        "banca": "CESPE",
+        "ano": 2023,
+        "enunciado": "A palavra 'porque' escrita separada e sem acento (por que) é usada em:",
+        "alternativas": ["Respostas", "Final de frases", "Início de perguntas", "Como substantivo"],
+        "correta": 2
+    },
+    {
+        "id": 15,
+        "disciplina": "informatica",
+        "banca": "VUNESP",
+        "ano": 2024,
+        "enunciado": "O que é o Kernel em um sistema operacional como o Linux Mint?",
+        "alternativas": ["Interface gráfica", "Núcleo do sistema", "Navegador", "Gerenciador de arquivos"],
+        "correta": 1
+    },
+    {
+        "id": 16,
+        "disciplina": "direito",
+        "banca": "FGV",
+        "ano": 2023,
+        "enunciado": "O voto no Brasil é obrigatório para brasileiros alfabetizados entre:",
+        "alternativas": ["16 e 60 anos", "18 e 70 anos", "21 e 65 anos", "18 e 80 anos"],
+        "correta": 1
+    },
+    {
+        "id": 17,
+        "disciplina": "informatica",
+        "banca": "CESPE",
+        "ano": 2024,
+        "enunciado": "Qual técnica de segurança utiliza criptografia para criar um túnel seguro em redes públicas?",
+        "alternativas": ["DNS", "VPN", "DHCP", "URL"],
+        "correta": 1
+    },
+    {
+        "id": 18,
+        "disciplina": "portugues",
+        "banca": "VUNESP",
+        "ano": 2023,
+        "enunciado": "Sinônimo da palavra 'Efêmero':",
+        "alternativas": ["Duradouro", "Passageiro", "Importante", "Brilhante"],
+        "correta": 1
+    },
+    {
+        "id": 19,
+        "disciplina": "informatica",
+        "banca": "FGV",
+        "ano": 2024,
+        "enunciado": "No contexto de Hardware, o que faz a memória RAM?",
+        "alternativas": ["Guarda arquivos para sempre", "Processa imagens", "Armazenamento temporário", "Resfria a CPU"],
+        "correta": 2
+    },
+    {
+        "id": 20,
+        "disciplina": "direito",
+        "banca": "CESPE",
+        "ano": 2023,
+        "enunciado": "Qual o período do mandato de um Senador no Brasil?",
+        "alternativas": ["4 anos", "5 anos", "8 anos", "10 anos"],
+        "correta": 2
+    },
+    {
+    "id": 21,
+    "disciplina": "informatica",
+    "banca": " INAZ DO PARÁ",
+    "ano": 2019,
+    "enunciado": "Dentre os diversos conceitos observados no cenário da Informática, vimos o que se refere a dados e à informação. Aponte a alternativa que adequadamente exemplifica o significado de “informação”, no contexto computacional.",
+    "alternativas": [
+        "Soma de preço unitário X Qtd. ",
+        "Valor total da fatura: R$-250,00. ",
+        " Medição X Métrica de temperatura. ",
+        " Métrica distância X Medição: 100km. "
+    ],
+    "correta": 1
+},
+{
+    "id": 22,
+    "disciplina": "informatica",
+    "banca": "consulplan",
+    "ano": 2020,
+    "enunciado": "No Windows Explorer (Explorador de Arquivos) do Windows XP, Configuração Local, Idioma Português-Brasil, para abrir alista suspensa da barra de ferramentas Barra de Endereços, basta utilizar a seguinte tecla de função:",
+    "alternativas": [
+        " F4 ",
+        " F5 ",
+        " F6 ",
+        " F7 "
+    ],
+    "correta": 0
+},
+{
+    "id": 23,
+    "disciplina": "informatica",
+    "banca": "ufg",
+    "ano": 2019,
+    "enunciado": "Atualmente, o serviço de busca na internet, conhecido como Google, permite encontrar vídeos usando, na opção “Ferramentas”, filtros como: pesquisar na web, todas as durações, em qualquer data, qualquer qualidade, todos os vídeos e",
+    "alternativas": [
+        "qualquer tempo. ",
+        "qualquer tipo. ",
+        " qualquer cor. ",
+        "  qualquer fonte "
+    ],
+    "correta": 3
+}
+]
