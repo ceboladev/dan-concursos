@@ -5,48 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dan Concursos | Painel</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* CSS Básico para o Peterson testar o layout no Linux Mint */
+        body { font-family: sans-serif; background-color: #f4f7f6; margin: 0; }
+        .container { display: flex; max-width: 1200px; margin: 20px auto; gap: 20px; padding: 0 20px; }
+        
+        /* Sidebar de Filtros */
+        .filters { flex: 1; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); height: fit-content; }
+        .filters h3 { margin-top: 0; color: #333; }
+        .filters label { display: block; margin-top: 15px; font-weight: bold; color: #555; }
+        .filters select, .filters input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-radius; }
+        .filters button { width: 100%; padding: 12px; background-color: #3498db; color: white; border: none; border-radius: 4px; margin-top: 20px; cursor: pointer; font-weight: bold; }
+        .filters button:hover { background-color: #2980b9; }
+
+        /* Área de Questões */
+        .feed-questoes { flex: 3; }
+        .card-questao { background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        .card-questao span { color: #888; font-size: 12px; }
+        .card-questao p { font-weight: bold; margin-top: 10px; font-size: 1.1rem; color: #333; }
+        .alternativas label { display: block; cursor: pointer; padding: 10px; border-radius: 4px; background: #f9f9f9; margin-bottom: 8px; border: 1px solid #eee; transition: background 0.2s; }
+        .alternativas label:hover { background: #f1f1f1; }
+        .alternativas input { margin-right: 10px; }
+        .btn-verificar { margin-top: 15px; padding: 10px 20px; background-color: #2c3e50; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-verificar:hover { background-color: #1a252f; }
+
+        /* Header e Perfil */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 10px 40px; background: #fff; border-bottom: 1px solid #ddd; }
+        header h1 { margin: 0; color: #2c3e50; font-size: 1.5rem; }
+        #userProfile { display: flex; align-items: center; gap: 12px; }
+        #userPic { border-radius: 50%; border: 2px solid #ddd; }
+        #userName { font-weight: bold; color: #333; }
+        .btn-sair { background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .btn-sair:hover { background: #c0392b; }
+
+        /* Placar (Fixo no topo da área de questões) */
+        #placar-container { display: flex; justify-content: space-around; background: #fff; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 20px; border: 1px solid #eee; font-weight: bold; color: #555; }
+        #placar-container span { color: #333; font-size: 1.2rem; margin-left: 5px; }
+        #contador-acertos { color: #27ae60; }
+        #contador-erros { color: #c0392b; }
+        #tempo-prova { font-family: monospace; color: #333; }
+        .btn-reset { background: none; border: none; cursor: pointer; font-size: 1.2rem; color: #888; }
+        .btn-reset:hover { color: #333; }
+
+    </style>
 </head>
 <body>
-    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #fff; border-bottom: 1px solid #ddd;">
-        <h1 style="margin: 0;">Dan Concursos</h1>
+    <header>
+        <h1>Dan Concursos</h1>
 
-        <div id="userProfile" style="display: flex; align-items: center; gap: 12px;">
-            <img id="userPic" src="" width="35" style="border-radius: 50%; border: 1px solid #ccc;">
-            <span id="userName" style="font-weight: bold; color: #333;"></span>
-            <button onclick="logout()" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">
-                SAIR
-            </button>
+        <div id="userProfile" style="display: flex;">
+            <img id="userPic" src="" width="38" height="38" alt="Foto de perfil">
+            <span id="userName"></span>
+            <button onclick="logout()" class="btn-sair">SAIR</button>
         </div>
     </header>
 
-    <main> 
+    <main class="container">
+        
         <aside class="filters">
-    <h3>Filtros</h3>
-    <label>Disciplina:</label>
-    <select id="disciplina">
-        <option value="todos">Todas</option>
-        <option value="portugues">Português</option>
-        <option value="informatica">Informática</option>
-    </select>
+            <h3>Filtros</h3>
+            <label for="disciplina">Disciplina:</label>
+            <select id="disciplina">
+                <option value="todos">Todas</option>
+                <option value="portugues">Português</option>
+                <option value="informatica">Informática</option>
+                <option value="direito">Direito Constitucional</option>
+            </select>
 
-    <label>Banca:</label>
-    <input type="text" id="banca" placeholder="Ex: FGV, IBADE...">
+            <label for="banca">Banca:</label>
+            <input type="text" id="banca" placeholder="Ex: FGV, IBADE, AOCP...">
 
-    <button onclick="buscarQuestoes()">Filtrar Questões</button>
-</aside>
+            <button onclick="buscarQuestoes()">FILTRAR QUESTÕES</button>
+        </aside>
 
-<div id="placar-container">
-    Acertos: <span id="contador-acertos">0</span>
-    Erros: <span id="contador-erros">0</span>
-    Aproveitamento: <span id="porcentagem-acerto">0%</span>
-    Tempo: <span id="tempo-prova">00:00:00</span>
-</div>
+        <section class="feed-questoes">
+            
+            <div id="placar-container">
+                <div>✅ Acertos: <span id="contador-acertos">0</span></div>
+                <div>❌ Erros: <span id="contador-erros">0</span></div>
+                <div>📊 <span id="porcentagem-acerto">0%</span></div>
+                <div>⏱️ Tempo: <span id="tempo-prova">00:00:00</span></div>
+                <button onclick="reiniciarSimulado()" class="btn-reset" title="Reiniciar Simulado">🔄</button>
+            </div>
+
+            <div id="feedQuestoes">
+                <p style="text-align: center; color: #666; margin-top: 50px;">Carregando simulado...</p>
+            </div>
+        </section>
+
     </main>
 
     <script src="js/api.js"></script>
 
     <script>
-        // Lógica de proteção (Roda assim que a página abre)
         (function verificarAcesso() {
             const logado = localStorage.getItem('logado');
             const nome = localStorage.getItem('usuarioNome');
@@ -56,9 +107,16 @@
                 document.getElementById("userName").innerText = nome;
                 document.getElementById("userPic").src = foto;
                 
-                // Inicia suas questões do api.js
-                if (typeof buscarQuestoes === "function") buscarQuestoes();
+                // Tenta iniciar a busca de questões (api.js deve estar carregado)
+                if (typeof buscarQuestoes === "function") {
+                    console.log("Acesso autorizado. Buscando questões...");
+                    buscarQuestoes();
+                } else {
+                    console.error("Erro: A função buscarQuestoes não foi encontrada no arquivo js/api.js.");
+                    document.getElementById('feedQuestoes').innerHTML = "<p style='color: red;'>Erro técnico ao carregar o simulado.</p>";
+                }
             } else {
+                // Se não achar os dados, volta pro login
                 window.location.href = "index.html";
             }
         })();
