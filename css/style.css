@@ -267,3 +267,105 @@ header h1 {
     padding: 2px 8px;
     border-radius: 4px;
 }
+
+
+/* 1. RESET E BASE */
+* { box-sizing: border-box; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; }
+
+/* 2. HEADER RESPONSIVO */
+header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px 5%; 
+    background: #fff; 
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 { font-size: 1.2rem; color: #2c3e50; }
+
+#userProfile { display: flex; align-items: center; gap: 8px; }
+#userPic { width: 32px; height: 32px; border-radius: 50%; }
+#userName { font-size: 0.9rem; display: none; } /* Esconde o nome no celular para caber tudo */
+
+@media (min-width: 600px) {
+    header h1 { font-size: 1.5rem; }
+    #userName { display: inline; } /* Mostra o nome em telas maiores */
+}
+
+/* 3. CONTAINER PRINCIPAL (A MÁGICA ACONTECE AQUI) */
+.container { 
+    display: flex; 
+    flex-direction: column; /* No celular, um embaixo do outro */
+    max-width: 1200px; 
+    margin: 10px auto; 
+    gap: 15px; 
+    padding: 10px; 
+}
+
+@media (min-width: 992px) {
+    .container { flex-direction: row; padding: 20px; } /* No PC, um ao lado do outro */
+}
+
+/* 4. FILTROS (SIDEBAR) */
+.filters { 
+    flex: 1; 
+    background: #fff; 
+    padding: 20px; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    height: fit-content;
+}
+
+/* 5. ÁREA DE QUESTÕES */
+.feed-questoes { flex: 3; width: 100%; }
+
+/* 6. PLACAR RESPONSIVO */
+#placar-container { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas no celular */
+    gap: 10px;
+    background: #2c3e50; 
+    color: white;
+    padding: 15px; 
+    border-radius: 12px; 
+    margin-bottom: 20px; 
+    text-align: center;
+}
+
+@media (min-width: 600px) {
+    #placar-container { grid-template-columns: repeat(5, 1fr); } /* 5 colunas no PC */
+}
+
+/* 7. CARD DE QUESTÃO (Melhor toque no celular) */
+.card-questao { 
+    background: #fff; 
+    padding: 20px; 
+    margin-bottom: 20px; 
+    border-radius: 12px; 
+    border: 1px solid #e0e0e0;
+}
+
+.alternativas label { 
+    padding: 12px; /* Área de toque maior para o dedo no celular */
+    margin-bottom: 10px;
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+}
+
+/* Botão Verificar Lindo e Grande */
+.btn-verificar { 
+    width: 100%; 
+    padding: 15px; 
+    background: #27ae60; 
+    color: white; 
+    border: none; 
+    border-radius: 8px; 
+    font-weight: bold; 
+    font-size: 1rem;
+}
