@@ -16,6 +16,7 @@
 
         <section class="login-box">
             <h2>Bem-vindo de volta!</h2>
+            <p>Acesse com sua conta Google para estudar.</p>
             <div id="buttonDiv" style="display: flex; justify-content: center; margin-top: 20px;"></div>
         </section>
 
@@ -25,6 +26,7 @@
     </div>
 
     <script>
+        // Função para decodificar o que o Google envia
         function parseJwt(token) {
             const base64Url = token.split('.')[1];
             const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -34,12 +36,12 @@
         function handleCredentialResponse(response) {
             const data = parseJwt(response.credential);
             
-            // Salvando exatamente como sua Dashboard espera
+            // Salvando os dados essenciais
             localStorage.setItem('usuarioNome', data.given_name);
-            localStorage.setItem('usuarioEmail', data.email);
             localStorage.setItem('usuarioPic', data.picture);
             localStorage.setItem('logado', 'true');
 
+            // Vai direto para o painel
             window.location.href = "dashboard.html";
         }
 

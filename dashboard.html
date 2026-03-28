@@ -10,45 +10,40 @@
     <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #fff; border-bottom: 1px solid #ddd;">
         <h1 style="margin: 0;">Dan Concursos</h1>
 
-        <div id="userProfile" style="display: flex; align-items: center; gap: 12px; background: #f0f0f0; padding: 5px 15px; border-radius: 50px;">
+        <div id="userProfile" style="display: flex; align-items: center; gap: 12px;">
             <img id="userPic" src="" width="35" style="border-radius: 50%; border: 1px solid #ccc;">
             <span id="userName" style="font-weight: bold; color: #333;"></span>
-            
-            <button onclick="logout()" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+            <button onclick="logout()" style="background: #e74c3c; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">
                 SAIR
             </button>
         </div>
     </header>
 
     <main class="container">
-        <section class="feed-questoes" id="feedQuestoes">
-            <p>Carregando questões...</p>
+        <section id="feedQuestoes">
+            <p>Carregando simulado...</p>
         </section>
     </main>
 
     <script src="js/api.js"></script>
 
     <script>
-        // ESSA É A LÓGICA QUE SEGURA O USUÁRIO NA PÁGINA
-        window.onload = function() {
+        // Lógica de proteção (Roda assim que a página abre)
+        (function verificarAcesso() {
             const logado = localStorage.getItem('logado');
             const nome = localStorage.getItem('usuarioNome');
             const foto = localStorage.getItem('usuarioPic');
 
             if (logado === 'true' && nome) {
-                // Preenche os dados na tela
                 document.getElementById("userName").innerText = nome;
                 document.getElementById("userPic").src = foto;
                 
-                // Inicia o sistema de questões
-                if (typeof buscarQuestoes === "function") {
-                    buscarQuestoes();
-                }
+                // Inicia suas questões do api.js
+                if (typeof buscarQuestoes === "function") buscarQuestoes();
             } else {
-                // Se não achar os dados, volta pro login
                 window.location.href = "index.html";
             }
-        };
+        })();
 
         function logout() {
             localStorage.clear();
