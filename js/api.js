@@ -121,9 +121,25 @@ function atualizarPlacarVisual() {
     const total = totalAcertos + totalErros;
     const porcentagem = total > 0 ? ((totalAcertos / total) * 100).toFixed(1) : 0;
 
+    // Atualiza os textos que você já tem
     document.getElementById('contador-acertos').innerText = totalAcertos;
     document.getElementById('contador-erros').innerText = totalErros;
     document.getElementById('porcentagem-acerto').innerText = `${porcentagem}%`;
+
+    // --- LÓGICA DO GRÁFICO DE PIZZA ---
+    const grafico = document.getElementById('pizza-grafico');
+    
+    if (total > 0) {
+        const percentAcertos = (totalAcertos / total) * 100;
+        // O conic-gradient desenha a fatia verde (acertos) e o resto fica vermelho (erros)
+        grafico.style.background = `conic-gradient(
+            #27ae60 0% ${percentAcertos}%, 
+            #e74c3c ${percentAcertos}% 100%
+        )`;
+    } else {
+        // Se não houver questões respondidas, fica cinza
+        grafico.style.background = "#ddd";
+    }
 }
 
 function reiniciarSimulado() {
