@@ -25,18 +25,13 @@
             <p>&copy; 2026 Dan Concursos - Desenvolvido por Peterson</p>
         </footer>
 
-         <div class="form-cadastro">
+        <div class="form-cadastro">
     <input type="email" id="email" placeholder="Email">
     <input type="password" id="senha" placeholder="Senha">
     
-    <button onclick="fazerLogin(document.getElementById('email').value, document.getElementById('senha').value)">
-        Entrar
-    </button>
-    
-    <button onclick="criarConta(document.getElementById('email').value, document.getElementById('senha').value)" 
-            style="background: #555; margin-top: 10px;">
-        Cadastrar Novo Usuário
-    </button>
+    <button id="btnEntrar">Entrar</button>
+    <button id="btnCadastrar" style="background: #555; margin-top: 10px;">Cadastrar Novo Usuário</button>
+</div>
          
     </div>
 
@@ -84,51 +79,47 @@
             );
         };
     </script>
-    <script type="module">
+   <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-  // SUAS CONFIGURAÇÕES DO CONSOLE AQUI
   const firebaseConfig = {
+    apiKey: "AIzaSyCi3qRVREDfcR-MBS-RaTKrcJMz5g_N1kw",
+    authDomain: "dan-concursos.firebaseapp.com",
+    projectId: "dan-concursos",
+    storageBucket: "dan-concursos.firebasestorage.app",
+    messagingSenderId: "562408055516",
+    appId: "1:562408055516:web:ac6a11898690f35443ca19",
+    measurementId: "G-YWHQYZJN75"
+  };
 
-  apiKey: "AIzaSyCi3qRVREDfcR-MBS-RaTKrcJMz5g_N1kw",
-
-  authDomain: "dan-concursos.firebaseapp.com",
-
-  projectId: "dan-concursos",
-
-  storageBucket: "dan-concursos.firebasestorage.app",
-
-  messagingSenderId: "562408055516",
-
-  appId: "1:562408055516:web:ac6a11898690f35443ca19",
-
-  measurementId: "G-YWHQYZJN75"
-
-};
-
-  // Inicializa o Firebase
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  // LÓGICA DE LOGIN
-  window.fazerLogin = (email, senha) => {
-    signInWithEmailAndPassword(auth, email, senha)
-      .then((userCredential) => {
-        console.log("Logado com sucesso!");
-        window.location.href = "dashboard.html"; // Redireciona
-      })
-      .catch((error) => {
-        alert("Erro ao entrar: " + error.message);
-      });
-  };
+  // Selecionando os elementos
+  const btnEntrar = document.getElementById('btnEntrar');
+  const btnCadastrar = document.getElementById('btnCadastrar');
 
-  // LÓGICA DE CADASTRO (Se quiser criar novos usuários)
-  window.criarConta = (email, senha) => {
+  // Evento de Login
+  btnEntrar.addEventListener('click', () => {
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
+    
+    signInWithEmailAndPassword(auth, email, senha)
+      .then(() => {
+        localStorage.setItem('logado', 'true'); // Mantém compatibilidade com seu script antigo
+        window.location.href = "dashboard.html";
+      })
+      .catch((error) => alert("Erro ao entrar: " + error.message));
+  });
+
+  // Evento de Cadastro
+  btnCadastrar.addEventListener('click', () => {
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
+    
     createUserWithEmailAndPassword(auth, email, senha)
-      .then(() => alert("Conta criada! Agora faça login."))
+      .then(() => alert("Conta criada! Agora você já pode entrar."))
       .catch((error) => alert("Erro ao cadastrar: " + error.message));
-  };
+  });
 </script>
-</body>
-</html>
