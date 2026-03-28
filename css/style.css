@@ -240,29 +240,3 @@ header h1 { font-size: 1.2rem; margin: 0; letter-spacing: 1px; }
     justify-content: center;
     transition: background 0.5s ease;
 }
-
-.furo-donut {
-    width: 35px;
-    height: 35px;
-    background: var(--primary-color); /* Mesma cor do fundo do placar */
-    border-radius: 50%;
-}
-
-.status-grafico small {
-    font-size: 0.7rem;
-    margin-top: 5px;
-    text-transform: uppercase;
-    opacity: 0.8;
-}
-
-/* RESPONSIVIDADE PARA CELULAR */
-@media (max-width: 600px) {
-    #placar-container {
-        flex-direction: row; /* Mantém lado a lado, mas diminui fontes */
-        padding: 15px;
-    }
-    .status-numeros { gap: 5px; }
-    .item-placar { font-size: 0.8rem; }
-    #pizza-grafico { width: 60px; height: 60px; }
-    .furo-donut { width: 30px; height: 30px; }
-}

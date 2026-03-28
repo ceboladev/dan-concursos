@@ -79,23 +79,15 @@
         </aside>
 
         <section class="feed-questoes">
-    <div id="placar-container">
-        
-        <div class="status-numeros">
-            <div class="item-placar">✅ Acertos: <span id="contador-acertos">0</span></div>
-            <div class="item-placar">❌ Erros: <span id="contador-erros">0</span></div>
-            <div class="item-placar">📊 <span id="porcentagem-acerto">0%</span></div>
-            <div class="item-placar">⏱️ <span id="tempo-prova">00:00:00</span></div>
-            <button onclick="reiniciarSimulado()" class="btn-reset" title="Reiniciar">🔄 Reiniciar</button>
-        </div>
+    <div id="placar-container" style="display: flex; justify-content: space-around; align-items: center; background: #2c3e50; color: white; padding: 15px; border-radius: 10px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+    <div>✅ Acertos: <span id="contador-acertos">0</span></div>
+    <div>❌ Erros: <span id="contador-erros">0</span></div>
+    <div>📊 <span id="porcentagem-acerto">0%</span></div>
+    <div>⏱️ <span id="tempo-prova">00:00:00</span></div>
+    <button onclick="reiniciarSimulado()" style="background: none; border: none; cursor: pointer; color: white; font-size: 1.2rem;" title="Reiniciar">🔄</button>
+</div>
 
-        <div class="status-grafico">
-            <div id="pizza-grafico">
-                <div class="furo-donut"></div>
-            </div>
-            <small>Desempenho</small>
-        </div>
-    </div>
+       
 
     <div id="feedQuestoes">
         <p>Carregando simulado...</p>
