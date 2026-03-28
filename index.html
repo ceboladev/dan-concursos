@@ -18,26 +18,30 @@
             <h2>Bem-vindo de volta!</h2>
             <p>Acesse sua conta para continuar seus estudos.</p>
             
-            <div id="buttonDiv"></div>
+            <div id="buttonDiv" style="margin-bottom: 20px;"></div>
+
+            <hr style="opacity: 0.2; margin: 20px 0;">
+
+            <div class="form-cadastro">
+                <input type="email" id="email" placeholder="Email" style="width: 100%; margin-bottom: 10px; padding: 10px;">
+                <input type="password" id="senha" placeholder="Senha" style="width: 100%; margin-bottom: 10px; padding: 10px;">
+                
+                <button id="btnEntrar" style="width: 100%; padding: 10px; cursor: pointer;">
+                    Entrar com E-mail
+                </button>
+                
+                <button id="btnCadastrar" style="background: #555; color: white; width: 100%; margin-top: 10px; padding: 10px; border: none; cursor: pointer;">
+                    Criar Nova Conta
+                </button>
+            </div>
         </section>
 
         <footer>
             <p>&copy; 2026 Dan Concursos - Desenvolvido por Peterson</p>
         </footer>
+    </div> ```
 
-        <div class="form-cadastro">
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="senha" placeholder="Senha">
-    
-    <button id="btnEntrar">Entrar</button>
-    <button id="btnCadastrar" style="background: #555; margin-top: 10px;">Cadastrar Novo Usuário</button>
-</div>
-         
-    </div>
 
-   
-</div>
-    
 
     <script>
         // Função para decodificar o Token JWT do Google
