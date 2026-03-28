@@ -8,11 +8,10 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-   <script type="module">
+ <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-  // IMPORTANTE: Use EXATAMENTE a mesma config que você usou no index.html
   const firebaseConfig = {
     apiKey: "AIzaSyCi3qRVREDfcR-MBS-RaTKrcJMz5g_N1kw",
     authDomain: "dan-concursos.firebaseapp.com",
@@ -26,24 +25,35 @@
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  onAuthStateChanged(auth, (user) => {
-    // Se não tem user no Firebase E não tem a marca de 'logado' no localStorage
-    if (!user && localStorage.getItem('logado') !== 'true') {
+  // 1. Verificação Imediata (Plano B)
+  // Se não houver NADA no localStorage, nem tentamos esperar o Firebase.
+  if (localStorage.getItem('logado') !== 'true') {
       window.location.href = "index.html";
-    } else {
-      // Se estiver logado, preenchemos os dados na tela
-      const nome = user ? user.email.split('@')[0] : localStorage.getItem('usuarioNome');
-      document.getElementById("userName").innerText = nome;
+  }
+
+  // 2. Verificação Oficial do Firebase
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log("Acesso confirmado via Firebase:", user.email);
+      // Preenche o nome na tela
+      const nomeExibicao = user.displayName || user.email.split('@')[0];
+      document.getElementById("userName").innerText = nomeExibicao;
       document.getElementById("userProfile").style.display = "flex";
       
-      // Carrega as questões automaticamente
       if (typeof buscarQuestoes === "function") buscarQuestoes();
+    } else {
+      // Se o Firebase diz que não tem user, mas o localStorage diz que sim, 
+      // damos um tempo. Se em 2 segundos o Firebase não validar, expulsamos.
+      setTimeout(() => {
+          if (!auth.currentUser && localStorage.getItem('logado') !== 'true') {
+              window.location.href = "index.html";
+          }
+      }, 2000);
     }
   });
 
-  // Função Global para o botão Sair
   window.deslogar = () => {
-    localStorage.clear(); // Limpa o cache do Google tbm
+    localStorage.clear();
     signOut(auth).then(() => {
       window.location.href = "index.html";
     });
