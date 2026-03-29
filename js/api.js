@@ -58,7 +58,7 @@ function exibirNaTela(lista) {
                     }).join('')}
                 </div>
 
-                <button class="btn-verificar" onclick="verificarResposta(${q.id}, ${q.correta})" style="margin-top: 15px; cursor: pointer; color: white; background-color: #2c3e50;">
+                <button class="btn-verificar" onclick="verificarResposta(${q.id}, ${q.correta})" style="margin-top: 15px; cursor: pointer;">
                     Verificar Resposta
                 </button>
                 <div id="feedback-${q.id}" style="margin-top: 10px; font-weight: bold;"></div>
