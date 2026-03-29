@@ -10,10 +10,15 @@
 </head>
 <body class="login-page">
     <div class="login-container">
-        <header>
-            <h1>Dan Concursos</h1> 
-            <p>Sua aprovação começa aqui.</p>
-        </header>
+         <header>
+        <h1>Dan Concursos</h1>
+
+        <div id="userProfile" style="display: flex;">
+            <img id="userPic" src="" width="38" height="38" alt="Foto de perfil">
+            <span id="userName"></span>
+            <button onclick="logout()" class="btn-sair">SAIR</button>
+        </div>
+    </header>
 
         <section class="login-box">
             <h2>Bem-vindo de volta!</h2>
