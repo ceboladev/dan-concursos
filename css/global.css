@@ -1,4 +1,4 @@
-:root {
+/*:root {
     --primary-color: #2c3e50;
     --secondary-color: #3498db;
     --success-color: #27ae60;
@@ -7,13 +7,14 @@
     --text-color: #333;
     --white: #ffffff;
 }
+    */
 
 * { box-sizing: border-box; }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color:  #f0f2f5;
+    color: #333;
     margin: 0;
 }
 
@@ -23,7 +24,7 @@ header {
     justify-content: space-between; 
     align-items: center; 
     padding: 10px 5%; 
-    background: var(--primary-color);
+    background: #2c3e50;
     color: white;
     position: sticky;
     top: 0;
@@ -36,6 +37,6 @@ header h1 { font-size: 1.2rem; margin: 0; }
 #userPic { width: 35px; height: 35px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.2); }
 
 .btn-logout, .btn-sair {
-    background: var(--error-color);
+    background: #e74c3c;
     color: white; border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold;
 }
