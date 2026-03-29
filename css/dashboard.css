@@ -1,0 +1,68 @@
+.container { 
+    display: flex; 
+    flex-direction: column; 
+    max-width: 1200px; 
+    margin: 20px auto; 
+    gap: 20px; 
+    padding: 0 15px; 
+}
+
+@media (min-width: 992px) {
+    .container { display: grid; grid-template-columns: 300px 1fr; }
+}
+
+/* FILTROS */
+.filters { 
+    background: var(--white); 
+    padding: 20px; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.filters select, .filters input {
+    width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px;
+}
+
+.filters button {
+    width: 100%; background: var(--secondary-color); color: white; border: none;
+    padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer;
+}
+
+/* PLACAR */
+#placar-container { 
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center;
+    background: var(--primary-color); 
+    color: white;
+    padding: 20px; 
+    border-radius: 12px; 
+    margin-bottom: 25px; 
+}
+
+/* CARD DE QUESTÃO */
+.card-questao {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border-left: 5px solid var(--secondary-color);
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.alternativas label {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.alternativas label:hover { background: #eef7ff; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

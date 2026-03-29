@@ -1,0 +1,25 @@
+.form-cadastro { 
+    max-width: 600px; 
+    margin: 40px auto; 
+    background: white; 
+    padding: 30px; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+}
+
+.form-cadastro label { display: block; margin-top: 15px; font-weight: bold; }
+
+.form-cadastro input, .form-cadastro select, .form-cadastro textarea {
+    width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-top: 5px;
+}
+
+.campo-alternativa { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
+
+pre { 
+    background: #333; 
+    color: #2ecc71; 
+    padding: 15px; 
+    border-radius: 8px; 
+    overflow-x: auto; 
+    font-family: 'Courier New', Courier, monospace;
+}
